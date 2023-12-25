@@ -7,18 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E01050D2B354412004BB08F /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E01050C2B354412004BB08F /* Bar.swift */; };
+		1E01050F2B3556C2004BB08F /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E01050E2B3556C2004BB08F /* Ring.swift */; };
+		1E0105112B359C9F004BB08F /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0105102B359C9F004BB08F /* Wheel.swift */; };
+		1E79CD8A2B36366C0031B9C4 /* Rings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E79CD892B36366C0031B9C4 /* Rings.swift */; };
+		1E79CD8C2B37666B0031B9C4 /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E79CD8B2B37666B0031B9C4 /* Leaf.swift */; };
+		1E79CD902B37679D0031B9C4 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1E79CD8F2B37679D0031B9C4 /* Shaders.metal */; };
+		1EE729242B3876E000EBEBA6 /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE729232B3876E000EBEBA6 /* Space.swift */; };
 		1EF2CD772B335E91007EB22D /* Cool_LoadersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2CD762B335E91007EB22D /* Cool_LoadersApp.swift */; };
 		1EF2CD792B335E91007EB22D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2CD782B335E91007EB22D /* ContentView.swift */; };
 		1EF2CD7B2B335E92007EB22D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF2CD7A2B335E92007EB22D /* Assets.xcassets */; };
 		1EF2CD7E2B335E92007EB22D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF2CD7D2B335E92007EB22D /* Preview Assets.xcassets */; };
+		1EF2CD852B33707F007EB22D /* DarkCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2CD842B33707F007EB22D /* DarkCircle.swift */; };
+		1EF2CD882B3373F0007EB22D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2CD872B3373F0007EB22D /* Extensions.swift */; };
+		1EF2CD8A2B33769A007EB22D /* DashCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2CD892B33769A007EB22D /* DashCircle.swift */; };
+		1EF2CD8C2B337F8E007EB22D /* GradientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2CD8B2B337F8E007EB22D /* GradientTest.swift */; };
+		1EF2CD982B33996D007EB22D /* CircleMa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2CD972B33996D007EB22D /* CircleMa.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E01050C2B354412004BB08F /* Bar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bar.swift; sourceTree = "<group>"; };
+		1E01050E2B3556C2004BB08F /* Ring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ring.swift; sourceTree = "<group>"; };
+		1E0105102B359C9F004BB08F /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
+		1E79CD892B36366C0031B9C4 /* Rings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rings.swift; sourceTree = "<group>"; };
+		1E79CD8B2B37666B0031B9C4 /* Leaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaf.swift; sourceTree = "<group>"; };
+		1E79CD8F2B37679D0031B9C4 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		1EE729232B3876E000EBEBA6 /* Space.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space.swift; sourceTree = "<group>"; };
+		1EE729252B38817800EBEBA6 /* Cool-Loaders-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cool-Loaders-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1EF2CD732B335E91007EB22D /* Cool Loaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cool Loaders.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF2CD762B335E91007EB22D /* Cool_LoadersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cool_LoadersApp.swift; sourceTree = "<group>"; };
 		1EF2CD782B335E91007EB22D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1EF2CD7A2B335E92007EB22D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EF2CD7D2B335E92007EB22D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1EF2CD842B33707F007EB22D /* DarkCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkCircle.swift; sourceTree = "<group>"; };
+		1EF2CD872B3373F0007EB22D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1EF2CD892B33769A007EB22D /* DashCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashCircle.swift; sourceTree = "<group>"; };
+		1EF2CD8B2B337F8E007EB22D /* GradientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTest.swift; sourceTree = "<group>"; };
+		1EF2CD972B33996D007EB22D /* CircleMa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleMa.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +76,12 @@
 		1EF2CD752B335E91007EB22D /* Cool Loaders */ = {
 			isa = PBXGroup;
 			children = (
+				1EE729252B38817800EBEBA6 /* Cool-Loaders-Info.plist */,
+				1EF2CD902B33918A007EB22D /* View */,
+				1EF2CD862B3373B5007EB22D /* Utilities */,
 				1EF2CD762B335E91007EB22D /* Cool_LoadersApp.swift */,
 				1EF2CD782B335E91007EB22D /* ContentView.swift */,
+				1E79CD8F2B37679D0031B9C4 /* Shaders.metal */,
 				1EF2CD7A2B335E92007EB22D /* Assets.xcassets */,
 				1EF2CD7C2B335E92007EB22D /* Preview Content */,
 			);
@@ -65,6 +94,31 @@
 				1EF2CD7D2B335E92007EB22D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1EF2CD862B3373B5007EB22D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1EF2CD872B3373F0007EB22D /* Extensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1EF2CD902B33918A007EB22D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1EF2CD972B33996D007EB22D /* CircleMa.swift */,
+				1EF2CD842B33707F007EB22D /* DarkCircle.swift */,
+				1EF2CD8B2B337F8E007EB22D /* GradientTest.swift */,
+				1EF2CD892B33769A007EB22D /* DashCircle.swift */,
+				1E01050C2B354412004BB08F /* Bar.swift */,
+				1E01050E2B3556C2004BB08F /* Ring.swift */,
+				1E0105102B359C9F004BB08F /* Wheel.swift */,
+				1E79CD892B36366C0031B9C4 /* Rings.swift */,
+				1E79CD8B2B37666B0031B9C4 /* Leaf.swift */,
+				1EE729232B3876E000EBEBA6 /* Space.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +191,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EF2CD852B33707F007EB22D /* DarkCircle.swift in Sources */,
+				1E79CD8A2B36366C0031B9C4 /* Rings.swift in Sources */,
+				1EE729242B3876E000EBEBA6 /* Space.swift in Sources */,
+				1E79CD902B37679D0031B9C4 /* Shaders.metal in Sources */,
+				1E01050D2B354412004BB08F /* Bar.swift in Sources */,
 				1EF2CD792B335E91007EB22D /* ContentView.swift in Sources */,
+				1E0105112B359C9F004BB08F /* Wheel.swift in Sources */,
 				1EF2CD772B335E91007EB22D /* Cool_LoadersApp.swift in Sources */,
+				1EF2CD8C2B337F8E007EB22D /* GradientTest.swift in Sources */,
+				1EF2CD882B3373F0007EB22D /* Extensions.swift in Sources */,
+				1EF2CD982B33996D007EB22D /* CircleMa.swift in Sources */,
+				1E79CD8C2B37666B0031B9C4 /* Leaf.swift in Sources */,
+				1E01050F2B3556C2004BB08F /* Ring.swift in Sources */,
+				1EF2CD8A2B33769A007EB22D /* DashCircle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,9 +341,9 @@
 				DEVELOPMENT_TEAM = 9GRRFW5PQZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Cool-Loaders-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -304,9 +370,9 @@
 				DEVELOPMENT_TEAM = 9GRRFW5PQZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Cool-Loaders-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

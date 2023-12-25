@@ -12,6 +12,9 @@ struct Cool_LoadersApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-        }
+                            .preferredColorScheme(.dark) // Set the color scheme to dark mode
+                            .background(Color("LaunchScreenBackgroundColor"))
+                    }
+                
     }
 }
