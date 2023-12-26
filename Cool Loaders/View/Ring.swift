@@ -40,86 +40,89 @@ struct Ring: View {
     var body: some View{
         ZStack{
             //Base Track
-            
-            Color(UIColor(hex: "0A0A0F"))
-            ZStack{
+//            Color(.red) // debug
+            Color("LaunchScreenBackgroundColor")
                 ZStack{
-                    Circle()
-                        .stroke(lineWidth: 5)
-                        .fill(Color(UIColor(hex: "717171")))
-                        .frame(width: 220)
-                        .blur(radius: 4)
-                    Circle()
-                        .stroke(lineWidth: 4)
-                        .fill(Color(UIColor(hex: "FFFFFF")))
-                        .frame(width: 220)
-                }.blur(radius: 3)
-                ZStack{
-                    Circle()
-                        .stroke(lineWidth: 2)
-                        .fill(Color(UIColor(hex: "FFFFFF")))
-                        .frame(width: 220)
-                }
-            }
-            
-            ZStack{
-                GradientCircleBar()
-                    .blur(radius: 8)
-                GradientCircleBar()
-                    .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-                    .blur(radius: 20)
+                    ZStack{
+                        ZStack{
+                            Circle()
+                                .stroke(lineWidth: 5)
+                                .fill(Color(UIColor(hex: "717171")))
+                                .frame(width: 220)
+                                .blur(radius: 4)
+                            Circle()
+                                .stroke(lineWidth: 4)
+                                .fill(Color(UIColor(hex: "FFFFFF")))
+                                .frame(width: 220)
+                        }.blur(radius: 3)
+                        ZStack{
+                            Circle()
+                                .stroke(lineWidth: 2)
+                                .fill(Color(UIColor(hex: "FFFFFF")))
+                                .frame(width: 220)
+                        }
+                    }
+                    ZStack{
+                        GradientCircleBar()
+                            .blur(radius: 8)
+                        GradientCircleBar()
+                            .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                            .blur(radius: 20)
+                        
+                    }
+                    .blendMode(.plusLighter)
+                    .rotationEffect(Angle(degrees: circleRotation), anchor: .center)
                     
-            }
-            .blendMode(.plusLighter)
-            .rotationEffect(Angle(degrees: circleRotation), anchor: .center)
-            
-        
-            
-            //Rotation
-            ZStack{
-                ZStack{
-                    Ellipse()
-                        .fill(EllipticalGradient(gradient: .init(stops: [
-                            Gradient.Stop(color: .white, location: 0.0),
-                            Gradient.Stop(color: Color(UIColor(hex: "1d1d1d")).opacity(0.3), location: 0.8)
-                        ])))
-                        .blur(radius: 4)
-                        .frame(width: 20, height: 80)
-                        .offset(x: 110, y: 0)
+                    //Rotation
+                    ZStack{
+                        ZStack{
+                            Ellipse()
+                                .fill(EllipticalGradient(gradient: .init(stops: [
+                                    Gradient.Stop(color: .white, location: 0.0),
+                                    Gradient.Stop(color: Color(UIColor(hex: "1d1d1d")).opacity(0.3), location: 0.8)
+                                ])))
+                                .blur(radius: 4)
+                                .frame(width: 30, height: 90)
+                                .offset(x: 110, y: 0)
+                        }
+                        .blendMode(.plusLighter)
+                        ZStack{
+                            Ellipse()
+                                .fill(EllipticalGradient(gradient: .init(stops: [
+                                    Gradient.Stop(color: .white, location: 0.0),
+                                    Gradient.Stop(color: Color(UIColor(hex: "1d1d1d")).opacity(0.2), location: 0.8)
+                                ])))
+                                .blur(radius: 10)
+                                .frame(width: 40, height: 120)
+                                .offset(x: 115, y: 0)
+                        }
+                        .blendMode(.plusLighter)
+                        
+                    }
+                    .offset(x:-5)
+                    .rotationEffect(Angle(degrees: ellipseRotation), anchor: .center)
+                    
                 }
-                .blendMode(.plusLighter)
-                ZStack{
-                    Ellipse()
-                        .fill(EllipticalGradient(gradient: .init(stops: [
-                            Gradient.Stop(color: .white, location: 0.0),
-                            Gradient.Stop(color: Color(UIColor(hex: "1d1d1d")).opacity(0.2), location: 0.8)
-                        ])))
-                        .blur(radius: 10)
-                        .frame(width: 60, height: 120)
-                        .offset(x: 110, y: 0)
-                }
-                .blendMode(.plusLighter)
-      
-            }
-            .rotationEffect(Angle(degrees: ellipseRotation), anchor: .center)
             
         }
         .onAppear {
-            rotateShapesContinuously(circleDuration: 12.0, ellipseDuration: 4.0)
-                }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                rotateShapesContinuously(circleDuration: 12.0, ellipseDuration: 4.0)
+            }
+        }
         .ignoresSafeArea()
     }
     func rotateShapesContinuously(circleDuration: Double, ellipseDuration: Double) {
-            withAnimation(Animation.linear(duration: circleDuration).repeatForever(autoreverses: false)) {
-                circleRotation += 360.0
-            }
-            
-            withAnimation(Animation.linear(duration: ellipseDuration).repeatForever(autoreverses: false)) {
-                ellipseRotation += 360.0
-            }
+        withAnimation(Animation.linear(duration: circleDuration).repeatForever(autoreverses: false)) {
+            circleRotation += 360.0
         }
+        
+        withAnimation(Animation.linear(duration: ellipseDuration).repeatForever(autoreverses: false)) {
+            ellipseRotation += 360.0
+        }
+    }
 }
 
 #Preview {
-    Ring()
+    Ring().preferredColorScheme(.dark)
 }

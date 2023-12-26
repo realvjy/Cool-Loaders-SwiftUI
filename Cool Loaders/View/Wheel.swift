@@ -50,8 +50,7 @@ struct Wheel: View {
     ])
     var body: some View{
         ZStack{
-            Color(UIColor(hex: "0A0A0F"))
-     
+            Color("LaunchScreenBackgroundColor")
             ZStack{
                 Circle()
                     .fill(Color(UIColor(hex: "D8FFFF")))
@@ -142,9 +141,12 @@ struct Wheel: View {
             }
         }
         .onAppear {
-            rotateShapesContinuously(circleDuration: 2.0)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                rotateShapesContinuously(circleDuration: 2.0)
+            }
         }
         .ignoresSafeArea()
+        
     }
     func rotateShapesContinuously(circleDuration: Double) {
         withAnimation(Animation.linear(duration: circleDuration).repeatForever(autoreverses: false)) {

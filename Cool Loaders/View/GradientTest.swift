@@ -8,34 +8,30 @@
 import SwiftUI
 
 struct GradientTest: View {
-    let colors: [Color] = [.red, .green, .blue, .yellow]
-
-        @State private var fakeCardIndex = 1
-        let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
-
-        var body: some View {
-            GeometryReader { geometry in
-                HStack(spacing: 0) {
-                    ForEach(colors.indices, id: \.self) { index in
-                        Rectangle()
-                            .fill(colors[(index + fakeCardIndex) % colors.count])
-                            .frame(width: geometry.size.width)
-                    }
-                }
-                .offset(x: -geometry.size.width * CGFloat(fakeCardIndex))
-                .animation(.easeInOut(duration: 0.5), value: fakeCardIndex)
-                .onReceive(timer) { _ in
-                    withAnimation {
-                        self.fakeCardIndex += 1
-                        if self.fakeCardIndex >= colors.count + 1 {
-                            self.fakeCardIndex = 1
-                        }
-                    }
+    @State private var circlePosition: CGFloat = 0 // Initial position
+    
+    var body: some View {
+        VStack {
+            Spacer()
+            
+            // Circle view that moves horizontally
+            Circle()
+                .frame(width: 50, height: 50)
+                .foregroundColor(.blue)
+                .offset(x: circlePosition, y: 0) // Use offset to move the circle
+                
+            Spacer()
+            
+            // Button to trigger the animation
+            Button("Move Circle") {
+                withAnimation(.linear(duration: 2)) {
+                    self.circlePosition = 200 // Set the final position
                 }
             }
-            .frame(height: 200)
-            .clipped()
+            
+            Spacer()
         }
+    }
 }
 
 

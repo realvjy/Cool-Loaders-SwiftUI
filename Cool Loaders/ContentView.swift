@@ -31,288 +31,145 @@ class TimerManager: ObservableObject {
     }
 }
 
-struct TrackGradient: View {
-    let gradient = Gradient(stops: [
-        Gradient.Stop(color: Color(UIColor(hex: "#FF8A00")), location: 0.0),
-        Gradient.Stop(color: Color(UIColor(hex: "#E01949")), location: 0.14),
-        Gradient.Stop(color: Color(UIColor(hex: "#A129AC")), location: 0.33),
-        Gradient.Stop(color: Color(UIColor(hex: "#2F82FF")), location: 0.50),
-        Gradient.Stop(color: Color(UIColor(hex: "#1FDEB0")), location: 0.60),
-        Gradient.Stop(color: Color(UIColor(hex: "#65B400")), location: 0.82),
-        Gradient.Stop(color: Color(UIColor(hex: "#FFB800")), location: 0.90),
-        Gradient.Stop(color: Color(UIColor(hex: "#FF8A00")), location: 0.98),
-    ])
-    var body: some View {
-        Rectangle()
-            .frame(width: 400, height: 400)
-            .foregroundStyle(
-                AngularGradient(gradient: gradient,
-                                center: .center)
-                
-            )
-    }
-}
-
-struct TrackBall: View {
-    let gradient = Gradient(stops: [
-        Gradient.Stop(color: Color(UIColor(hex: "#FF8A00")), location: 0.0),
-        Gradient.Stop(color: Color(UIColor(hex: "#E01949")), location: 0.14),
-        Gradient.Stop(color: Color(UIColor(hex: "#A129AC")), location: 0.33),
-        Gradient.Stop(color: Color(UIColor(hex: "#2F82FF")), location: 0.50),
-        Gradient.Stop(color: Color(UIColor(hex: "#1FDEB0")), location: 0.60),
-        Gradient.Stop(color: Color(UIColor(hex: "#65B400")), location: 0.82),
-        Gradient.Stop(color: Color(UIColor(hex: "#FFB800")), location: 0.90),
-        Gradient.Stop(color: Color(UIColor(hex: "#FF8A00")), location: 0.98),
-    ])
-    var body: some View {
-        ZStack{
-            Circle()
-                .frame(width: 24, height: 24)
-                .blur(radius: 2.0)
-                .foregroundColor(Color(UIColor(hex: "FFA800")))
-                .offset(x:3, y:8)
-                .blendMode(.hardLight)
-            Circle()
-                .frame(width: 20, height: 20)
-                .blur(radius: 5.0)
-                .foregroundColor(Color(UIColor(hex: "05FF00")).opacity(0.8))
-                .offset(x: -2, y:8)
-                .blendMode(.hardLight)
-            ZStack{
-                Circle()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.white)
-                Circle()
-                    .stroke(lineWidth: 11)
-                    .frame(width: 34, height: 34)
-                    .blur(radius: 3.5)
-                    .offset(y:-5)
-                    .foregroundColor(Color(UIColor(hex: "0094FF")))
-                Circle()
-                    .frame(width: 12, height: 12)
-                    .blur(radius: 2)
-                    .offset(y:-8)
-                    .foregroundColor(Color(UIColor(hex: "FFF500")))
-                    
-                Circle()
-                    .stroke(lineWidth: 9)
-                    .frame(width: 34, height: 34)
-                    .blur(radius: 3)
-                    .offset(y:-2.5)
-                    .foregroundColor(Color(UIColor(hex: "FF5CEF")))
-               
-                Circle()
-                    .stroke(lineWidth: 9)
-                    .frame(width: 38, height: 38)
-                    .blur(radius: 1)
-                    .offset(y:-2)
-                    .foregroundColor(Color(UIColor(hex: "FFCA64")))
-                Circle()
-                    .stroke(lineWidth: 9)
-                    .frame(width: 38, height: 38)
-                    .blur(radius: 0.5)
-                    .offset(y:1.5)
-                    .blendMode(.overlay)
-                    .foregroundColor(Color(UIColor(hex: "FFFFFF")))
-                ZStack{
-                    Ellipse()
-                        .frame(width: 16, height: 10)
-//                        .blur(radius: 0.5)
-                        .offset(y:-6)
-                        .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.white.opacity(0.9), .clear]), startPoint: .top, endPoint: .bottom))
-                        .blendMode(.colorDodge)
-                }
-            }.mask{
-                Circle()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.blue)
-            }
-            
-        }
-        .offset(x:0, y:45)
-    }
-}
-
-
-struct MainCircle: View {
-    let originalWidthCircle1: CGFloat = 220
-    let originalWidthCircle2: CGFloat = 100
-    
-    var geometry: GeometryProxy
-    
-    var body: some View {
-        ZStack {
-            Circle()
-                .fill(Color.green)
-                //.frame(width: originalWidthCircle1 * geometry.size.width / baseSize, height: originalWidthCircle1 * geometry.size.height / baseSize)
-                .frame(width: geometry.calculateSize(originalWidth: originalWidthCircle1).width)
-                .offset(geometry.calculateOffset(x: 0, y: 0))
-               //.offset(x: -(originalWidthCircle1 / 2), y: -(originalWidthCircle1 / 2)) // Dynamic offset for Circle 1
-            
-            Circle()
-                .fill(Color.blue)
-                .frame(width: geometry.calculateSize(originalWidth: originalWidthCircle2).width)
-                //.frame(width: originalWidthCircle2 * geometry.size.width / baseSize, height: originalWidthCircle2 * geometry.size.height / baseSize)
-                //.offset(x: originalWidthCircle2 / 2, y: originalWidthCircle2 / 2) // Dynamic offset for Circle 2
-        }
-    }
-    
-
-}
 
 
 
 struct ContentView: View {
-    @State private var rotationDegrees: Double = 0
-        @State private var offsetX: CGFloat = 0
-        @State private var animate = false
-    @State private var timer: Timer?
-    @State private var reverseRotation = false
-        @State private var previousRotationDegrees: Double = 0 // Store previous rotation
-    @State private var autoReverse = false
-    @State private var isForwardRotation = true
-
-
-
-    let start = Date()
+    // Example width and height for ellipses
+    let ellipseDimensions: [(width: CGFloat, height: CGFloat)] = [(20, 20), (20, 20), (20, 20), (20, 20), (20, 20)]
     
-    @State private var xOffset = -500.0 // Start offscreen to the left
+    // Example colors for ellipses
+    let ellipsesColors: [Color] = [.red, .blue, .green, .yellow, .white]
+    
+    // State variables to manage current index, offset, and animation state
+    @State private var currentIndex = 0
+    @State private var offset: CGFloat = 0
+    
+    @State private var shouldScrollToBottom = false
+    @State private var visibleEllipses = 5 // Default number of visible ellipses
     var body: some View {
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+        let safeAreaHeight = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
+        let usableScreenHeight = screenHeight - safeAreaHeight
         ZStack{
-            ZStack{
-                ZStack{
-                    TrackGradient()
-                    RoundedRectangle(cornerRadius: 45.0)
-                        .stroke(lineWidth: 14)
-                        .frame(width: 222, height: 90)
-                        .foregroundColor(.white)
-                        .blur(radius: 5.0)
-                        .blendMode(.overlay)
+//            Color("LaunchScreenBackgroundColor")
+            NavigationView {
+                
+                ScrollView(showsIndicators: false) {
                     
-                    RoundedRectangle(cornerRadius: 45.0)
-                        .stroke(lineWidth: 9)
-                        .frame(width: 185, height: 50)
-                        .offset(x:0, y:-2)
-                        .foregroundColor(.black).opacity(2)
-                        .blur(radius: 5.0)
-                        .blendMode(.multiply)
-                    RoundedRectangle(cornerRadius: 45.0)
-                        .stroke(lineWidth: 6)
-                        .frame(width: 222, height: 90)
-                        .foregroundColor(.white).opacity(0.6)
-                        .blur(radius: 2.0)
-                        .blendMode(.overlay)
+                    VStack(spacing: 10){
+                        HStack{
+                            ZStack{
+                                LoaderLogoView(gOpacity: 1, size: 0.8, opacity: 1)
+                                //                            Ring()
+                                //                                .scaleEffect(0.4)
+                                //                                .frame(width: screenWidth / 2)
+                            }
+                        }
+                        .frame(width: screenWidth, height: 100)
+                        Spacer()
+                        HStack(spacing: 10){
+                            ZStack{
+                                Rings()
+                                    .scaleEffect(0.37)
+                                    .frame(width: screenWidth / 2, height: 200)
+                            }.frame(width: abs(screenWidth / 2 - 20), height: 200)
+                            .overlay{
+                                RoundedRectangleStyle()
+                            }
+                            ZStack{
+                                Ring()
+                                    .scaleEffect(0.5)
+                                    .frame(width: abs(screenWidth / 2 - 20), height: 200)
+                                
+                            }
+                            .overlay{
+                                RoundedRectangleStyle()
+                            }
+                            .frame(width: abs(screenWidth / 2 - 20), height: 200)
+                        }
+                        .frame(width: screenWidth, height: 200)
+                        Spacer()
+                        HStack{
+                            ZStack{
+                                Space()
+                                    .scaleEffect(0.5)
+                                    .frame(width: screenWidth / 2, height: 300)
+                            }.frame(width: abs(screenWidth / 2 - 20), height: 200)
+                            .overlay{
+                                RoundedRectangleStyle()
+                            }
+                            .frame(width: abs(screenWidth / 2 - 20), height: 200)
+     
+                            ZStack{
+                                Wheel()
+                                    .scaleEffect(0.4)
+                                    .frame(width: screenWidth / 2, height: 300)
+                            }.frame(width: abs(screenWidth / 2 - 20), height: 200)
+                            .overlay{
+                                RoundedRectangleStyle()
+                            }
+                            .frame(width: abs(screenWidth / 2 - 20), height: 200)
+                        }.frame(width: screenWidth, height: 200)
+                        Spacer()
+                        HStack{
+                            ZStack{
+                                Track()
+                                    .scaleEffect(0.5)
+                                    .frame(width: screenWidth / 2, height: 300)
+                            }.frame(width: abs(screenWidth / 2 - 20), height: 200)
+                                .overlay{
+                                    RoundedRectangleStyle()
+                                }
+                                .frame(width: abs(screenWidth / 2 - 20), height: 200)
+                            
+                            ZStack{
+                                Leaf()
+                                    .scaleEffect(0.4)
+                                    .frame(width: screenWidth / 2, height: 300)
+                            }.frame(width: abs(screenWidth / 2 - 20), height: 200)
+                                .overlay{
+                                    RoundedRectangleStyle()
+                                }
+                        }.frame(width: screenWidth, height: 200)
+                        Spacer()
+                        HStack{
+                            ZStack{
+                                Bar()
+                                    .scaleEffect(1)
+                                    .frame(width: screenWidth - 20, height: 100)
+                            }
+                        }
+                            .overlay{
+                                    RoundedRectangleStyle()
+                                }
+                            .frame(width: screenWidth, height: 200)
+                    }
+                    //.padding(20)
+                    .background(Color("LaunchScreenBackgroundColor"))
+                    .frame(minHeight: usableScreenHeight)
+    //                .background(.green) /// debug
                 }
-                .mask{
-                    RoundedRectangle(cornerRadius: 45.0)
-                        .stroke(lineWidth: 30)
-                        .frame(width: 222, height: 90)
-                        .foregroundColor(.red)
-                }
+                .background(Color("LaunchScreenBackgroundColor"))
+                
+                //.edgesIgnoringSafeArea(.all)
+                
             }
-//            //Ball
-
-            TrackBall()
-                        .frame(width: 10, height: 100)
-                        .rotationEffect(.degrees(rotationDegrees))
-                        .offset(x: offsetX, y: 0)
-                        .onAppear {
-                            self.animateSequence()
-                        }
-                        .onDisappear {
-                            cleanUpTimer()
-                        }
-            
         }
-            //.background(Color("LaunchScreenBackgroundColor"))
-            .ignoresSafeArea()
+
+        
+        .background(Color("LaunchScreenBackgroundColor"))
+        .ignoresSafeArea()
     }
-    
-    
-
-    func animateSequence() {
-            animateStep1()
-        }
-
-        func animateStep1() {
-            
-            self.isForwardRotation.toggle()
-            withAnimation(Animation.linear(duration: 1.0)) {
-                self.rotationDegrees = isForwardRotation ? 180 : -180
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.animateStep2()
-            }
-        }
-
-        func animateStep2() {
-            withAnimation(Animation.linear(duration: 1.0)) {
-                self.offsetX = 64
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.animateStep3()
-            }
-        }
-
-        func animateStep3() {
-            withAnimation(Animation.linear(duration: 1.0)) {
-                self.rotationDegrees = 0
-            }
-            self.isForwardRotation.toggle()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.animateStep4()
-            }
-        }
-
-        func animateStep4() {
-            withAnimation(Animation.linear(duration: 1.0)) {
-                self.offsetX = -64
-                self.isForwardRotation.toggle()
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.animateSequence()
-            }
-        }
-        
-        // Invalidate timer when view disappears to avoid memory leaks
-        func cleanUpTimer() {
-            self.timer?.invalidate()
-            self.timer = nil
-        }
-        
-        // Call cleanUpTimer when the view disappears
-        func cleanUpTimerOnDisappear() {
-            cleanUpTimer()
-        }
 }
 
 
 
 #Preview {
-     ContentView().preferredColorScheme(.dark) // Set the color scheme to dark mode
+    ContentView().preferredColorScheme(.dark) // Set the color scheme to dark mode
 }
 
-
-struct RectangleAnimation: ViewModifier {
-    @Binding var state: Int
-    
-    func body(content: Content) -> some View {
-        switch state {
-        case 1:
-            return AnyView(content.rotationEffect(.degrees(0)).offset(x: 0, y: 0))
-        case 2:
-            return AnyView(content.rotationEffect(.degrees(180)).offset(x: 0, y: 0))
-        case 3:
-            return AnyView(content.rotationEffect(.degrees(180)).offset(x: 100, y: 0))
-        case 4:
-            return AnyView(content.rotationEffect(.degrees(0)).offset(x: 100, y: 0))
-        case 5:
-            return AnyView(content.rotationEffect(.degrees(0)).offset(x: -100, y: 0))
-        default:
-            return AnyView(content)
-        }
-    }
-}
 
 
 struct Card: View {

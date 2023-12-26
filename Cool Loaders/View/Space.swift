@@ -26,24 +26,28 @@ struct Space: View {
     @State private var xOffset = -500.0 // Start offscreen to the left
     var body: some View {
         ZStack{
-            GeometryReader { geometry in
+            //Color("LaunchScreenBackgroundColor")
                 ZStack{
                     // originalvalue
                     //let sizeFactor =  0.008 * min(geometry.size.width, geometry.size.height);
                     //Metal shader
                     ZStack {
-                        TimelineView(.animation) { context in
-                            Rectangle()
-                                .foregroundStyle(.white)
-                                .starField(
-                                    seconds: context.date.timeIntervalSince1970 - self.start.timeIntervalSince1970
-                                )
+                        ZStack{
+                            TimelineView(.animation) { context in
+                                Rectangle()
+                                    .foregroundStyle(.white)
+                                    .starField(
+                                        seconds: context.date.timeIntervalSince1970 - self.start.timeIntervalSince1970
+                                        
+                                    )
+                            }
                         }
+                        .frame(width: 800, height: 800)
                         .mask{
                             Circle()
                                 .stroke(lineWidth: 60)
-                                .frame(width: 220)
-                                .blur(radius: 30)
+                                .frame(width: 240)
+                                .blur(radius: 36)
                         }
                     }
                     ZStack{
@@ -145,8 +149,6 @@ struct Space: View {
                         
                     }
                    
-                }
-                .frame(width: geometry.size.width, height: geometry.size.height)
                 //text{
                 .overlay{
                     ZStack{
@@ -157,8 +159,10 @@ struct Space: View {
                             }
                             .offset(x: xOffset)
                             .onAppear {
-                                withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
-                                    xOffset = 500
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                                        xOffset = 500
+                                    }
                                 }
                             }
                         }
@@ -174,7 +178,9 @@ struct Space: View {
             }
         }
         .onAppear {
-            rotateShapesContinuously(circleDuration1: 8.0, circleDuration2: 10.0)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                //rotateShapesContinuously(circleDuration1: 8.0, circleDuration2: 10.0)
+            }
         }
         .ignoresSafeArea()
     }

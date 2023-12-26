@@ -60,3 +60,21 @@ extension CGSize {
         self.init(width: size.0, height: size.1)
     }
 }
+
+struct RoundedRectangleStyle: View {
+    var body: some View {
+        RoundedRectangle(cornerRadius: 20)
+            .stroke(lineWidth: 0.4)
+            .foregroundStyle(
+                LinearGradient(
+                    stops: [
+                        Gradient.Stop(color: Color(UIColor(hex: "626262")).opacity(0.2), location: 0.00),
+                        Gradient.Stop(color: Color(UIColor(hex: "686868")).opacity(0.3), location: 0.5),
+                        Gradient.Stop(color: Color(UIColor(hex: "686868")).opacity(0.1), location: 1.00),
+                    ],
+                    startPoint: .init(x: 0.5, y: 0),
+                    endPoint: .init(x: 0.5, y: 1)
+                )
+            )
+    }
+}

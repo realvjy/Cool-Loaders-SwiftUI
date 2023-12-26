@@ -118,7 +118,7 @@ struct Rings: View {
             Gradient.Stop(color: Color(UIColor(hex: "#D1D52A")), location: 0.96)
         ])
         ZStack{
-            Color(UIColor(hex: "0A0A0F"))
+//            Color("LaunchScreenBackgroundColor")
             ZStack{
                 GeometryReader { geometry in
                     ZStack{
@@ -150,15 +150,19 @@ struct Rings: View {
                             .rotationEffect(Angle(degrees: circleRotation1 ), anchor: .center)
                             .blendMode(.plusLighter)
                         
-                    }.frame(width: geometry.size.width, height: geometry.size.height)
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                }
+                
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        rotateShapesContinuously(circleDuration1: 2.0, circleDuration2: 1.0)
+                    }
                 }
             }
             .frame(width: 300, height: 300)
 
         }
-        .onAppear {
-                    rotateShapesContinuously(circleDuration1: 2.0, circleDuration2: 1.0)
-                }
         .ignoresSafeArea()
     }
     

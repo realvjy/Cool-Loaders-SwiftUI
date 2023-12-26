@@ -36,7 +36,6 @@ struct Bar: View {
     
     var body: some View {
         ZStack {
-            Color(UIColor(hex: "0A0A0F"))
             //Base Track
             ZStack{
                 ZStack{
@@ -64,8 +63,10 @@ struct Bar: View {
                 }
                 .offset(x: xOffset)
                 .onAppear {
-                    withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
-                        xOffset = 500
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                            xOffset = 500
+                        }
                     }
                 }
             }
@@ -128,6 +129,7 @@ struct Bar: View {
         }
     }
     func performAnimation() {
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             withAnimation(.linear(duration: 0.2)) {
                 self.animationState = 2
