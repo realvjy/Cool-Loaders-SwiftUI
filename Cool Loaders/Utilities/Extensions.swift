@@ -68,8 +68,8 @@ struct RoundedRectangleStyle: View {
             .foregroundStyle(
                 LinearGradient(
                     stops: [
-                        Gradient.Stop(color: Color(UIColor(hex: "626262")).opacity(0.2), location: 0.00),
-                        Gradient.Stop(color: Color(UIColor(hex: "686868")).opacity(0.3), location: 0.5),
+                        Gradient.Stop(color: Color(UIColor(hex: "626262")).opacity(0.3), location: 0.00),
+                        Gradient.Stop(color: Color(UIColor(hex: "686868")).opacity(0.4), location: 0.5),
                         Gradient.Stop(color: Color(UIColor(hex: "686868")).opacity(0.1), location: 1.00),
                     ],
                     startPoint: .init(x: 0.5, y: 0),
@@ -77,4 +77,49 @@ struct RoundedRectangleStyle: View {
                 )
             )
     }
+}
+
+
+extension View {
+    func customNavigationLink<Destination: View>(destination: @escaping () -> Destination, title: String) -> some View {
+        NavigationLink(destination:
+            CustomNavigationView(destinationView: AnyView(destination()), title: title)
+        ) {
+            self
+        }
+    }
+}
+
+extension View {
+    func onTapGestureForced(count: Int = 1, perform action: @escaping () -> Void) -> some View {
+        self
+            .contentShape(Rectangle())
+            .onTapGesture(count:count, perform:action)
+    }
+}
+
+
+//@Nick Bellucci solution ,
+
+extension UINavigationController {
+    open override func viewWillLayoutSubviews() {
+        
+        // remove left buttons (in case you added some)
+         self.navigationItem.leftBarButtonItems = []
+        // hide the default back buttons
+         self.navigationItem.hidesBackButton = true
+        
+    }
+}
+
+extension UINavigationController: UIGestureRecognizerDelegate {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        interactivePopGestureRecognizer?.delegate = self
+    }
+
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return viewControllers.count > 1
+    }
+    
 }

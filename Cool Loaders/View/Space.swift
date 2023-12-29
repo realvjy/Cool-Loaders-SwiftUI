@@ -45,9 +45,9 @@ struct Space: View {
                         .frame(width: 800, height: 800)
                         .mask{
                             Circle()
-                                .stroke(lineWidth: 60)
-                                .frame(width: 240)
-                                .blur(radius: 36)
+                                .stroke(lineWidth: 62)
+                                .frame(width: 260)
+                                .blur(radius: 34)
                         }
                     }
                     ZStack{

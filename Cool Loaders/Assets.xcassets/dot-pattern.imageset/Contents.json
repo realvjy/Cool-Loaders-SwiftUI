@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "dot-pattern.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -14,6 +14,7 @@
 		1E79CD8C2B37666B0031B9C4 /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E79CD8B2B37666B0031B9C4 /* Leaf.swift */; };
 		1E79CD902B37679D0031B9C4 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1E79CD8F2B37679D0031B9C4 /* Shaders.metal */; };
 		1E7CF11F2B3A074600CDABED /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7CF11E2B3A074600CDABED /* SplashScreenView.swift */; };
+		1ED76BEB2B3E65E8002DFA51 /* CustomNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED76BEA2B3E65E8002DFA51 /* CustomNavigationView.swift */; };
 		1EE729242B3876E000EBEBA6 /* Space.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE729232B3876E000EBEBA6 /* Space.swift */; };
 		1EE729272B39043200EBEBA6 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE729262B39043200EBEBA6 /* Track.swift */; };
 		1EF2CD772B335E91007EB22D /* Cool_LoadersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF2CD762B335E91007EB22D /* Cool_LoadersApp.swift */; };
@@ -33,6 +34,7 @@
 		1E79CD8B2B37666B0031B9C4 /* Leaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaf.swift; sourceTree = "<group>"; };
 		1E79CD8F2B37679D0031B9C4 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		1E7CF11E2B3A074600CDABED /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		1ED76BEA2B3E65E8002DFA51 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
 		1EE729232B3876E000EBEBA6 /* Space.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space.swift; sourceTree = "<group>"; };
 		1EE729252B38817800EBEBA6 /* Cool-Loaders-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cool-Loaders-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1EE729262B39043200EBEBA6 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				1EF2CD862B3373B5007EB22D /* Utilities */,
 				1EF2CD762B335E91007EB22D /* Cool_LoadersApp.swift */,
 				1E7CF11E2B3A074600CDABED /* SplashScreenView.swift */,
+				1ED76BEA2B3E65E8002DFA51 /* CustomNavigationView.swift */,
 				1EF2CD782B335E91007EB22D /* ContentView.swift */,
 				1E79CD8F2B37679D0031B9C4 /* Shaders.metal */,
 				1EF2CD7A2B335E92007EB22D /* Assets.xcassets */,
@@ -203,6 +206,7 @@
 				1EF2CD8C2B337F8E007EB22D /* GradientTest.swift in Sources */,
 				1EF2CD882B3373F0007EB22D /* Extensions.swift in Sources */,
 				1EE729272B39043200EBEBA6 /* Track.swift in Sources */,
+				1ED76BEB2B3E65E8002DFA51 /* CustomNavigationView.swift in Sources */,
 				1E79CD8C2B37666B0031B9C4 /* Leaf.swift in Sources */,
 				1E01050F2B3556C2004BB08F /* Ring.swift in Sources */,
 			);

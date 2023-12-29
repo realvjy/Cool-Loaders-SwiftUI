@@ -22,21 +22,7 @@ struct SplashScreenView: View {
             GeometryReader { geometry in
                 VStack {
                     ZStack{
-                        //                        VStack{
-//                            Spacer()
-//                            Image("cool-loaders")
-//                                .scaledToFit()
-//                                .aspectRatio(contentMode: .fit)
-//                                .scaleEffect(size)
-//                                .opacity(opacity)
-//                            Spacer()
-//                            Image("realvjy")
-//                                .opacity(rOpacity)
-//                                .scaledToFit()
-//                                .aspectRatio(contentMode: .fit)
-//                                .padding(.bottom, 40)
-//                            
-//                        }
+
                         VStack{
                             LoaderLogoView(
                                         gOpacity: gOpacity,
@@ -73,7 +59,7 @@ struct SplashScreenView: View {
                 .background(Color("LaunchScreenBackgroundColor")) // Optional: Add a background color
                 
                 .onAppear(){
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
                         withAnimation{
                             self.isActive = true
                         }

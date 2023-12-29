@@ -150,5 +150,5 @@ struct Bar: View {
 }
 
 #Preview {
-    Bar()
+    Bar().preferredColorScheme(.dark)
 }
