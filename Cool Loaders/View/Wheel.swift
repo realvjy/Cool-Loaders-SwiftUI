@@ -48,9 +48,9 @@ struct Wheel: View {
         Gradient.Stop(color: .black, location: 0.82),
         Gradient.Stop(color: .clear, location: 0.92)
     ])
+    
     var body: some View{
         ZStack{
-            Color("LaunchScreenBackgroundColor")
             GeometryReader { geometry in
                 ZStack{
                     ZStack{
@@ -152,7 +152,7 @@ struct Wheel: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                rotateShapesContinuously(circleDuration: 2.0)
+                rotateShapesContinuously(circleDuration: 1.4)
             }
         }
         .ignoresSafeArea()

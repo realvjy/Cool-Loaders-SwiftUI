@@ -24,13 +24,12 @@ struct Space: View {
     
     let start = Date()
     @State private var xOffset = -500.0 // Start offscreen to the left
+
     var body: some View {
         ZStack{
-            //Color("LaunchScreenBackgroundColor")
+  
                 ZStack{
-                    // originalvalue
-                    //let sizeFactor =  0.008 * min(geometry.size.width, geometry.size.height);
-                    //Metal shader
+
                     ZStack {
                         ZStack{
                             TimelineView(.animation) { context in
@@ -41,8 +40,8 @@ struct Space: View {
                                         
                                     )
                             }
-                        }
-                        .frame(width: 800, height: 800)
+                        }.frame(width: 400, height: 400)
+                        
                         .mask{
                             Circle()
                                 .stroke(lineWidth: 62)
@@ -175,11 +174,12 @@ struct Space: View {
                         
                     }
                 }
-            }
+                }
         }
+        .background(.clear)
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                //rotateShapesContinuously(circleDuration1: 8.0, circleDuration2: 10.0)
+             
             }
         }
         .ignoresSafeArea()

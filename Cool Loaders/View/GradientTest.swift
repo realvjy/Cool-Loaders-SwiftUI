@@ -11,6 +11,16 @@ struct GradientTest: View {
     @State private var circlePosition: CGFloat = 0 // Initial position
     
     var body: some View {
+        ZStack{
+            Rectangle()
+                .foregroundStyle(.red)
+                .frame(width: 100, height: 100)
+                .zIndex(4)
+            Rectangle()
+                .foregroundStyle(.blue)
+                .frame(width: 100, height: 100)
+                .zIndex(/*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+        }
         VStack {
             Spacer()
             

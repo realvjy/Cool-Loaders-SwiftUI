@@ -31,7 +31,7 @@ struct GradientBar: View {
 struct Bar: View {
     @State var gradientColors: [Color] = [.red, .green, .blue]
     @State private var xOffset = -500.0 // Start offscreen to the left
-    
+
     @State private var animationState = 1
     
     var body: some View {

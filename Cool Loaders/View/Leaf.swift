@@ -36,9 +36,10 @@ struct CircleLeaf: View {
 }
 
 struct Leaf: View {
+//    var namespace: Namespace.ID
+//    @Binding var show: Bool
+    
     @State private var circles: [CircleData] = CircleData.circlesWithPosition()
-    
-    
     @State private var circles2: [CircleData] = CircleData.circlesWithPosition()
     
     
@@ -51,7 +52,7 @@ struct Leaf: View {
     @State private var newOpacity: CGFloat = 0
     @State private var timer: Timer?
     @StateObject var refreshManager = RefreshManager.shared
-    
+
     
     var body: some View {
         
@@ -74,6 +75,7 @@ struct Leaf: View {
                     animateCircles(rev: false, cBool: true)
                 }
             }
+            
             ZStack{
                 ForEach(circles2.indices, id: \.self) { index in
                     ZStack {
@@ -103,6 +105,9 @@ struct Leaf: View {
                 }
    
             }
+            .onDisappear {
+                refreshManager.shouldRefresh = true
+            }
 
     }
     
@@ -119,15 +124,16 @@ struct Leaf: View {
             
             
             if index < circles.count - 1 {
-                
-                withAnimation(Animation.linear(duration: 0.7)) {
-                    
-                    if rev {
-                        shiftLeft(cBool: cBool)
-                    } else {
-                        shiftRight(cBool: cBool)
+                DispatchQueue.main.asyncAfter(deadline: .now() ) {
+                    withAnimation(Animation.linear(duration: 0.7)) {
+                        
+                        if rev {
+                            shiftLeft(cBool: cBool)
+                        } else {
+                            shiftRight(cBool: cBool)
+                        }
+                        
                     }
-                    
                 }
                 
             }
@@ -274,18 +280,19 @@ struct CircleData: Identifiable, Hashable {
     static func circlesWithPosition() -> [CircleData] {
         let circles: [CircleData] = [
             CircleData(opacity: 0, color: "lred", width: 18, height: 1.0, zIndex: 0),
-            CircleData(opacity: 0, color: "lred", width: 18, height: 14.0, zIndex: 0),
-            CircleData(opacity: 1, color: "lred2", width: 14.0, height: 14.0, zIndex: 1),
-            CircleData(opacity: 1, color: "lorange", width: 8.0, height: 14.0, zIndex: 2),
-            CircleData(opacity: 1, color: "lyellow", width: 5.0, height: 14.0, zIndex: 3),
-            CircleData(opacity: 1, color: "lyellow2", width: 2, height: 14.0, zIndex: 4),
-            CircleData(opacity: 1, color: "lteal", width: 1, height: 14.0, zIndex: 5),
-            CircleData(opacity: 0, color: "lteal", width: 1, height: 14.0, zIndex: 6)
+            CircleData(opacity: 0, color: "lred", width: 18, height: 18, zIndex: 0),
+            CircleData(opacity: 1, color: "lred2", width: 14.0, height: 18, zIndex: 1),
+            CircleData(opacity: 1, color: "lorange", width: 8.0, height: 18, zIndex: 2),
+            CircleData(opacity: 1, color: "lyellow", width: 5.0, height: 18, zIndex: 3),
+            CircleData(opacity: 1, color: "lyellow2", width: 2, height: 18, zIndex: 4),
+            CircleData(opacity: 1, color: "lteal", width: 1, height: 18, zIndex: 5),
+            CircleData(opacity: 0, color: "lteal", width: 1, height: 18, zIndex: 6)
         ]
         
         var circlesWithPositions = circles
         for index in circlesWithPositions.indices {
             circlesWithPositions[index].position = xOffsetForCircle(at: index, circlesI: circlesWithPositions)
+            
         }
         return circlesWithPositions
     }
@@ -346,6 +353,11 @@ extension CircleData: Comparable {
     }
 }
 
+struct LeafPreview { // Example struct for holding the namespace
+    @Namespace static var namespace
+}
+
 #Preview {
-    Leaf().preferredColorScheme(.dark) // Set the color scheme to dark mode
+//    Leaf(namespace: LeafPreview.namespace, show: .constant(true)).preferredColorScheme(.dark)
+    Leaf().preferredColorScheme(.dark)
 }

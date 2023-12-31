@@ -41,6 +41,8 @@ struct TrackBall: View {
         Gradient.Stop(color: Color(UIColor(hex: "#FFB800")), location: 0.90),
         Gradient.Stop(color: Color(UIColor(hex: "#FF8A00")), location: 0.98),
     ])
+    
+    
     var body: some View {
         ZStack{
             Circle()
@@ -70,14 +72,14 @@ struct TrackBall: View {
                     .blur(radius: 2)
                     .offset(y:-8)
                     .foregroundColor(Color(UIColor(hex: "FFF500")))
-                    
+                
                 Circle()
                     .stroke(lineWidth: 9)
                     .frame(width: 34, height: 34)
                     .blur(radius: 3)
                     .offset(y:-2.5)
                     .foregroundColor(Color(UIColor(hex: "FF5CEF")))
-               
+                
                 Circle()
                     .stroke(lineWidth: 9)
                     .frame(width: 38, height: 38)
@@ -94,7 +96,7 @@ struct TrackBall: View {
                 ZStack{
                     Ellipse()
                         .frame(width: 16, height: 10)
-//                        .blur(radius: 0.5)
+                    //                        .blur(radius: 0.5)
                         .offset(y:-6)
                         .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.white.opacity(0.9), .clear]), startPoint: .top, endPoint: .bottom))
                         .blendMode(.colorDodge)
@@ -107,6 +109,7 @@ struct TrackBall: View {
             
         }
         .offset(x:0, y:45)
+        
     }
 }
 
@@ -121,40 +124,38 @@ struct MainCircle: View {
         ZStack {
             Circle()
                 .fill(Color.green)
-                //.frame(width: originalWidthCircle1 * geometry.size.width / baseSize, height: originalWidthCircle1 * geometry.size.height / baseSize)
+           
                 .frame(width: geometry.calculateSize(originalWidth: originalWidthCircle1).width)
                 .offset(geometry.calculateOffset(x: 0, y: 0))
-               //.offset(x: -(originalWidthCircle1 / 2), y: -(originalWidthCircle1 / 2)) // Dynamic offset for Circle 1
+
             
             Circle()
                 .fill(Color.blue)
                 .frame(width: geometry.calculateSize(originalWidth: originalWidthCircle2).width)
-                //.frame(width: originalWidthCircle2 * geometry.size.width / baseSize, height: originalWidthCircle2 * geometry.size.height / baseSize)
-                //.offset(x: originalWidthCircle2 / 2, y: originalWidthCircle2 / 2) // Dynamic offset for Circle 2
+
         }
     }
     
-
+    
 }
 
 struct Track: View {
     @State private var rotationDegrees: Double = 180
-        @State private var offsetX: CGFloat = 64
-        @State private var animate = false
+    @State private var offsetX: CGFloat = 64
+    @State private var animate = false
     @State private var timer: Timer?
     @State private var reverseRotation = false
-        @State private var previousRotationDegrees: Double = 0 // Store previous rotation
+    @State private var previousRotationDegrees: Double = 0 // Store previous rotation
     @State private var autoReverse = false
     @State private var isForwardRotation = true
 
-
-
+    
     let start = Date()
     
     @State private var xOffset = -500.0 // Start offscreen to the left
     var body: some View {
         ZStack{
-//            Color(.red) //for debug
+            //            Color(.red) //for debug
             ZStack{
                 ZStack{
                     TrackGradient()
@@ -186,89 +187,92 @@ struct Track: View {
                         .foregroundColor(.red)
                 }
             }
-
+            
             TrackBall()
-                        .frame(width: 10, height: 100)
-                        .rotationEffect(.degrees(rotationDegrees))
-                        .offset(x: offsetX, y: 0)
-                        .onAppear {
-                            self.animateSequence()
-                        }
-                        .onDisappear {
-                            cleanUpTimer()
-                        }
+                .frame(width: 10, height: 100)
+                .rotationEffect(.degrees(rotationDegrees))
+                .offset(x: offsetX, y: 0)
+  
             
         }
-            //.background(Color("LaunchScreenBackgroundColor"))
-            .ignoresSafeArea()
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.animateSequence()
+            }
+        }
+        .onDisappear {
+            cleanUpTimer()
+        }
+        //.background(Color("LaunchScreenBackgroundColor"))
+        .ignoresSafeArea()
     }
     
     
-
+    
     func animateSequence() {
-
-            animateStep1()
-        }
-
-        func animateStep1() {
+        
+        animateStep1()
+    }
+    
+    func animateStep1() {
+        
+        withAnimation(Animation.linear(duration: 1.0)) {
+            self.rotationDegrees = 180
             
-            withAnimation(Animation.linear(duration: 1.0)) {
-                self.rotationDegrees = 180
-                
-            }
-            
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.animateStep2()
-            }
-        }
-
-        func animateStep2() {
-            withAnimation(Animation.linear(duration: 1.0)) {
-                self.offsetX = 64
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.animateStep3()
-            }
-        }
-
-        func animateStep3() {
-            withAnimation(Animation.linear(duration: 1.0)) {
-                self.rotationDegrees = 360
-                
-            }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.animateStep4()
-            }
-        }
-
-        func animateStep4() {
-            withAnimation(Animation.linear(duration: 1.0)) {
-                self.offsetX = -64
-            }
-            self.rotationDegrees = 0
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.animateSequence()
-                
-            }
         }
         
-        // Invalidate timer when view disappears to avoid memory leaks
-        func cleanUpTimer() {
-            self.timer?.invalidate()
-            self.timer = nil
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.animateStep2()
+        }
+    }
+    
+    func animateStep2() {
+        withAnimation(Animation.linear(duration: 1.0)) {
+            self.offsetX = 64
         }
         
-        // Call cleanUpTimer when the view disappears
-        func cleanUpTimerOnDisappear() {
-            cleanUpTimer()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.animateStep3()
         }
+    }
+    
+    func animateStep3() {
+        withAnimation(Animation.linear(duration: 1.0)) {
+            self.rotationDegrees = 360
+            
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.animateStep4()
+        }
+    }
+    
+    func animateStep4() {
+        withAnimation(Animation.linear(duration: 1.0)) {
+            self.offsetX = -64
+        }
+        self.rotationDegrees = 0
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.animateSequence()
+            
+        }
+    }
+    
+    // Invalidate timer when view disappears to avoid memory leaks
+    func cleanUpTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
+    
+    // Call cleanUpTimer when the view disappears
+    func cleanUpTimerOnDisappear() {
+        cleanUpTimer()
+    }
 }
 
 #Preview {
     Track().preferredColorScheme(.dark)
-
+    
 }

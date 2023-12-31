@@ -37,11 +37,12 @@ struct GradientCircleBar: View {
 struct Ring: View {
     @State private var ellipseRotation: Double = 0.0
     @State private var circleRotation: Double = 0.0
+ 
+
     var body: some View{
         ZStack{
             //Base Track
 //            Color(.red) // debug
-            Color("LaunchScreenBackgroundColor")
                 ZStack{
                     ZStack{
                         ZStack{
@@ -106,10 +107,15 @@ struct Ring: View {
             
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//            refreshID = UUID()
+            DispatchQueue.main.async {
                 rotateShapesContinuously(circleDuration: 12.0, ellipseDuration: 4.0)
             }
+//            resetAll = true
+            
         }
+        
+        .background(.clear)
         .ignoresSafeArea()
     }
     func rotateShapesContinuously(circleDuration: Double, ellipseDuration: Double) {

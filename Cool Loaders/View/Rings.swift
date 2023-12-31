@@ -105,6 +105,7 @@ struct Rings: View {
     @State private var circleRotation1: Double = 0.0
     @State private var circleRotation2: Double = 0.0
     @State private var isReversed: Bool = false
+    
     var body: some View{
         let gradient = Gradient(stops: [
             Gradient.Stop(color: Color(UIColor(hex: "#D1D52A")), location: 0.0),
@@ -118,7 +119,6 @@ struct Rings: View {
             Gradient.Stop(color: Color(UIColor(hex: "#D1D52A")), location: 0.96)
         ])
         ZStack{
-//            Color("LaunchScreenBackgroundColor")
             ZStack{
                 GeometryReader { geometry in
                     ZStack{
@@ -163,6 +163,7 @@ struct Rings: View {
             .frame(width: 300, height: 300)
 
         }
+        .background(.clear)
         .ignoresSafeArea()
     }
     
@@ -178,5 +179,5 @@ struct Rings: View {
 }
 
 #Preview {
-    Rings()
+    Rings().preferredColorScheme(.dark)
 }
