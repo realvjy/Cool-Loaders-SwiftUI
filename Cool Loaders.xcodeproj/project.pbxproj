@@ -11,7 +11,6 @@
 		1E01050F2B3556C2004BB08F /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E01050E2B3556C2004BB08F /* Ring.swift */; };
 		1E0105112B359C9F004BB08F /* Wheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E0105102B359C9F004BB08F /* Wheel.swift */; };
 		1E22BAB42B401EC200D889DE /* WrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E22BAB32B401EC200D889DE /* WrapperView.swift */; };
-		1E22BAB82B40C77800D889DE /* MultiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E22BAB72B40C77800D889DE /* MultiView.swift */; };
 		1E79CD8A2B36366C0031B9C4 /* Rings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E79CD892B36366C0031B9C4 /* Rings.swift */; };
 		1E79CD8C2B37666B0031B9C4 /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E79CD8B2B37666B0031B9C4 /* Leaf.swift */; };
 		1E79CD902B37679D0031B9C4 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1E79CD8F2B37679D0031B9C4 /* Shaders.metal */; };
@@ -32,7 +31,6 @@
 		1E01050E2B3556C2004BB08F /* Ring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ring.swift; sourceTree = "<group>"; };
 		1E0105102B359C9F004BB08F /* Wheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wheel.swift; sourceTree = "<group>"; };
 		1E22BAB32B401EC200D889DE /* WrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperView.swift; sourceTree = "<group>"; };
-		1E22BAB72B40C77800D889DE /* MultiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiView.swift; sourceTree = "<group>"; };
 		1E79CD892B36366C0031B9C4 /* Rings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rings.swift; sourceTree = "<group>"; };
 		1E79CD8B2B37666B0031B9C4 /* Leaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaf.swift; sourceTree = "<group>"; };
 		1E79CD8F2B37679D0031B9C4 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
@@ -81,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				1EE729252B38817800EBEBA6 /* Cool-Loaders-Info.plist */,
-				1EF2CD902B33918A007EB22D /* View */,
+				1EF2CD902B33918A007EB22D /* LoaderView */,
 				1EF2CD862B3373B5007EB22D /* Utilities */,
 				1EF2CD762B335E91007EB22D /* Cool_LoadersApp.swift */,
 				1E7CF11E2B3A074600CDABED /* SplashScreenView.swift */,
@@ -111,7 +109,7 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		1EF2CD902B33918A007EB22D /* View */ = {
+		1EF2CD902B33918A007EB22D /* LoaderView */ = {
 			isa = PBXGroup;
 			children = (
 				1EF2CD8B2B337F8E007EB22D /* GradientTest.swift */,
@@ -122,9 +120,8 @@
 				1E79CD8B2B37666B0031B9C4 /* Leaf.swift */,
 				1EE729232B3876E000EBEBA6 /* Space.swift */,
 				1EE729262B39043200EBEBA6 /* Track.swift */,
-				1E22BAB72B40C77800D889DE /* MultiView.swift */,
 			);
-			path = View;
+			path = LoaderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +194,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E22BAB82B40C77800D889DE /* MultiView.swift in Sources */,
 				1E79CD8A2B36366C0031B9C4 /* Rings.swift in Sources */,
 				1EE729242B3876E000EBEBA6 /* Space.swift in Sources */,
 				1E79CD902B37679D0031B9C4 /* Shaders.metal in Sources */,

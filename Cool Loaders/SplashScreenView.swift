@@ -47,7 +47,7 @@ struct SplashScreenView: View {
                                 self.opacity = 1.0
                             }
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                             withAnimation(.easeIn(duration: 0.2)) {
                                 self.rOpacity = 1.0
                             }
@@ -56,11 +56,11 @@ struct SplashScreenView: View {
                     }
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height)
-                .background(Color("LaunchScreenBackgroundColor")) // Optional: Add a background color
+                .background(Color("LaunchScreenBackgroundColor"))
                 
                 .onAppear(){
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
-                        withAnimation{
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.7){
+                        withAnimation(){
                             self.isActive = true
                         }
                     }

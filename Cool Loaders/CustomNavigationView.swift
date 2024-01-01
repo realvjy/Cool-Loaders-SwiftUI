@@ -11,9 +11,7 @@ import SwiftUI
 
 
 struct CustomNavigationView: View {
-    //    var destinationView: Content
-    //    var title: String
-    //    @Binding var resetAll: Bool
+
     
     
     let loaderType: LoaderType

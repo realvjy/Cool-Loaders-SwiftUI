@@ -96,7 +96,6 @@ struct TrackBall: View {
                 ZStack{
                     Ellipse()
                         .frame(width: 16, height: 10)
-                    //                        .blur(radius: 0.5)
                         .offset(y:-6)
                         .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.white.opacity(0.9), .clear]), startPoint: .top, endPoint: .bottom))
                         .blendMode(.colorDodge)
@@ -196,13 +195,14 @@ struct Track: View {
             
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.animateSequence()
+            DispatchQueue.main.asyncAfter(deadline: .now() ) {
+                animateSequence()
             }
         }
         .onDisappear {
             cleanUpTimer()
         }
+
         //.background(Color("LaunchScreenBackgroundColor"))
         .ignoresSafeArea()
     }

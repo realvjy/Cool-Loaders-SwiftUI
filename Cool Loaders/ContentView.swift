@@ -54,7 +54,7 @@ struct ContentView: View {
     @EnvironmentObject var navigationState: NavigationState
     // State variables to manage current index, offset, and animation state
     @State private var currentIndex = 0
-    @State private var offset: CGFloat = 0
+    
     @State private var tappedArea: String = ""
     @State private var shouldScrollToBottom = false
     @State private var trackTapped = false
@@ -65,7 +65,9 @@ struct ContentView: View {
     @State private var rerender = false
     
     @State private var loaderContent: LoaderType?
-    
+    @State private var showDetail: Bool = false
+    @State private var detailOffset: CGFloat = UIScreen.main.bounds.width
+    @State private var homeOffset: CGFloat = 0
     var body: some View {
         
         let screenWidth = UIScreen.main.bounds.width
@@ -78,10 +80,24 @@ struct ContentView: View {
             
             if let loaderContent = loaderContent {
                 CustomNavigationView(loaderType: loaderContent) {
-                    self.loaderContent = nil
+                    DispatchQueue.main.asyncAfter(deadline: .now()) {
+                        withAnimation{
+                            self.detailOffset = UIScreen.main.bounds.width
+                        }
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.loaderContent = nil
+                    }
+                   
                 }
+                .onAppear{
+                    withAnimation{
+                        self.detailOffset = 0
+                        
+                    }
+                }
+                .offset(x: detailOffset)
             } else {
-                
                 ZStack {
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 20){
@@ -97,7 +113,15 @@ struct ContentView: View {
                             HStack(spacing: 20){
                                 ZStack{
                                     WrapperView(loader: .ring) { loaderContent  in
-                                        self.loaderContent = loaderContent
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            withAnimation{
+                                                self.homeOffset = -UIScreen.main.bounds.width
+                                            }
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                self.loaderContent = loaderContent
+                                            
+                                        }
                                     }
                                     .scaleEffect(0.5)
                                     .frame(width: 300, height: 300)
@@ -109,7 +133,15 @@ struct ContentView: View {
                                     }
                                 ZStack{
                                     WrapperView(loader: .rings) { loaderContent  in
-                                        self.loaderContent = loaderContent
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            withAnimation{
+                                                self.homeOffset = -UIScreen.main.bounds.width
+                                            }
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                self.loaderContent = loaderContent
+                                            
+                                        }
                                     }
                                     .scaleEffect(0.4)
                                     .frame(width: 300, height: 300)
@@ -124,7 +156,15 @@ struct ContentView: View {
                             HStack(spacing: 20){
                                 ZStack{
                                     WrapperView(loader: .space) { loaderContent  in
-                                        self.loaderContent = loaderContent
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            withAnimation{
+                                                self.homeOffset = -UIScreen.main.bounds.width
+                                            }
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                self.loaderContent = loaderContent
+                                            
+                                        }
                                     }
                                     .scaleEffect(0.52)
                                     .frame(width: 300, height: 300)
@@ -135,7 +175,15 @@ struct ContentView: View {
                                     }
                                 ZStack{
                                     WrapperView(loader: .wheel) { loaderContent  in
-                                        self.loaderContent = loaderContent
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            withAnimation{
+                                                self.homeOffset = -UIScreen.main.bounds.width
+                                            }
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                self.loaderContent = loaderContent
+                                            
+                                        }
                                     }
                                     .scaleEffect(0.4)
                                     .frame(width: 300, height: 300)
@@ -149,7 +197,15 @@ struct ContentView: View {
                             HStack(spacing: 20){
                                 ZStack{
                                     WrapperView(loader: .track) { loaderContent  in
-                                        self.loaderContent = loaderContent
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            withAnimation{
+                                                self.homeOffset = -UIScreen.main.bounds.width
+                                            }
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                self.loaderContent = loaderContent
+                                            
+                                        }
                                     }
                                     .scaleEffect(0.52)
                                     .frame(width: 300, height: 300)
@@ -161,7 +217,15 @@ struct ContentView: View {
                                     }
                                 ZStack{
                                     WrapperView(loader: .leaf) { loaderContent  in
-                                        self.loaderContent = loaderContent
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            withAnimation{
+                                                self.homeOffset = -UIScreen.main.bounds.width
+                                            }
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                self.loaderContent = loaderContent
+                                            
+                                        }
                                     }
                                     .scaleEffect(0.52)
                                     .frame(width: 300, height: 300)
@@ -176,7 +240,15 @@ struct ContentView: View {
                             HStack{
                                 ZStack{
                                     WrapperView(loader: .bar) { loaderContent  in
-                                        self.loaderContent = loaderContent
+                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                            withAnimation{
+                                                self.homeOffset = -UIScreen.main.bounds.width
+                                            }
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                self.loaderContent = loaderContent
+                                            
+                                        }
                                     }.scaleEffect(1)
                                         .frame(width: 400, height: 80)
                                 }.frame(width: screenWidth, height: cardHeight)
@@ -204,15 +276,23 @@ struct ContentView: View {
                                                 .font(.system(size: 15)).opacity(0.9)
                                         }
                                     }
-                                }.frame(width: screenWidth, height: 400)
-                            }.frame(width: abs(screenWidth - 20), height: 80)
+                                }.frame(width: screenWidth, height: 100)
+                            }.frame(width: abs(screenWidth - 20), height: 100)
                         } .background(Color("LaunchScreenBackgroundColor"))
                             .ignoresSafeArea()
-                    }.frame(width: cardHeight)
+                    }.background(Color("LaunchScreenBackgroundColor"))
+                    .frame(width: cardHeight)
                         
                     //cardHeight
-                    
+                
                 }
+                .onAppear{
+                    print("this show on appear \(showDetail)")
+                    withAnimation{
+                        self.homeOffset = 0
+                    }
+                }
+                .offset(x: homeOffset)
             }
             
             

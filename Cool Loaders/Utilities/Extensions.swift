@@ -68,9 +68,9 @@ struct RoundedRectangleStyle: View {
             .foregroundStyle(
                 LinearGradient(
                     stops: [
-                        Gradient.Stop(color: Color(UIColor(hex: "626262")).opacity(0.7), location: 0.00),
-                        Gradient.Stop(color: Color(UIColor(hex: "686868")).opacity(0.4), location: 0.5),
-                        Gradient.Stop(color: Color(UIColor(hex: "686868")).opacity(0.7), location: 1.00),
+                        Gradient.Stop(color: Color(UIColor(hex: "626262")).opacity(0.2), location: 0.00),
+                        Gradient.Stop(color: Color(UIColor(hex: "686868")).opacity(0.5), location: 0.5),
+                        Gradient.Stop(color: Color(UIColor(hex: "686868")).opacity(0.3), location: 1.00),
                     ],
                     startPoint: .init(x: 0.5, y: 0),
                     endPoint: .init(x: 0.5, y: 1)
@@ -80,15 +80,7 @@ struct RoundedRectangleStyle: View {
 }
 
 
-//extension View {
-//    func customNavigationLink<Destination: View>(destination: @escaping () -> Destination, title: String) -> some View {
-//        NavigationLink(destination:
-//                        CustomNavigationView(destinationView: AnyView(destination()), title: title, resetAll: .constant(true))
-//        ) {
-//            self
-//        }
-//    }
-//}
+
 
 extension View {
     func onTapGestureForced(count: Int = 1, perform action: @escaping () -> Void) -> some View {

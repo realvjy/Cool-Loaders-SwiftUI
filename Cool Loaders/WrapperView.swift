@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct WrapperView: View {
-    
-    
-    //    @Binding var refreshID: UUID
-
 
     let loader: LoaderType
     let onTap: (LoaderType) -> Void
@@ -21,7 +17,6 @@ struct WrapperView: View {
                 Button(action: {
                     withAnimation{
                         onTap(loader)
-                        print("On Button tap")
                     }
                 }){
                     Rectangle()
@@ -34,10 +29,6 @@ struct WrapperView: View {
             }.ignoresSafeArea().frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         
     }
-}
-#Preview {
-    WrapperView(loader: .wheel, onTap: { _ in })
-        .preferredColorScheme(.dark)
 }
 
 
@@ -62,4 +53,10 @@ enum LoaderType: String {
         case .bar: return AnyView(Bar())
         }
     }
+}
+
+
+#Preview {
+    WrapperView(loader: .wheel, onTap: { _ in })
+        .preferredColorScheme(.dark)
 }
