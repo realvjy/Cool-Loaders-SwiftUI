@@ -168,10 +168,13 @@ struct Rings: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 }
                 
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        rotateShapesContinuously(circleDuration1: 2.0, circleDuration2: 1.0)
-                    }
+                .task {
+                  do {
+                    try await Task.sleep(for: .seconds(0.1))
+                    rotateShapesContinuously(circleDuration1: 2.0, circleDuration2: 1.0)
+                  } catch {
+                    print(error)
+                  }
                 }
             }
             .frame(width: 300, height: 300)

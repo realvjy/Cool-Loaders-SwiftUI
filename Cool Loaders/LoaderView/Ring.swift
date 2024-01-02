@@ -106,11 +106,9 @@ struct Ring: View {
                 }
             
         }
-        .onAppear {
+        .task {
 //            refreshID = UUID()
-            DispatchQueue.main.async {
-                rotateShapesContinuously(circleDuration: 12.0, ellipseDuration: 4.0)
-            }
+          rotateShapesContinuously(circleDuration: 12.0, ellipseDuration: 4.0)
 //            resetAll = true
             
         }

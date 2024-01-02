@@ -67,12 +67,13 @@ struct Leaf: View {
                 }
             }
             .offset(x: -48)
-            .onAppear {
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    
-                    animateCircles(rev: false, cBool: true)
-                }
+            .task {
+              do {
+                try await Task.sleep(for: .seconds(0.4))
+                animateCircles(rev: false, cBool: true)
+              } catch {
+                print(error)
+              }
             }
             
             ZStack{
@@ -85,25 +86,30 @@ struct Leaf: View {
                     }
                     
                 }
-            }.onAppear{
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                    
-                    animateCircles(rev: true, cBool: false)
-                }
+            }
+            .task {
+              do {
+                try await Task.sleep(for: .seconds(0.4))
+                animateCircles(rev: true, cBool: false)
+              } catch {
+                print(error)
+              }
             }
             .offset(x: -48).scaleEffect(x: -1, y: 1)
             
             
-        }.scaleEffect(1.8)
-            .onAppear {
-                
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    
-                }
-                
+        }
+        .scaleEffect(1.8)
+        .task {
+
+            do {
+              try await Task.sleep(for: .seconds(2))
+              // missing code?
+            } catch {
+              print(error)
             }
+
+        }
             .onDisappear {
                 refreshManager.shouldRefresh = true
             }
@@ -123,27 +129,26 @@ struct Leaf: View {
             
             
             if index < circles.count - 1 {
-                DispatchQueue.main.asyncAfter(deadline: .now() ) {
-                    withAnimation(Animation.linear(duration: 0.7)) {
-                        
-                        if rev {
-                            shiftLeft(cBool: cBool)
-                        } else {
-                            shiftRight(cBool: cBool)
-                        }
-                        
-                    }
-                }
-                
+              withAnimation(Animation.linear(duration: 0.7)) {
+
+                  if rev {
+                      shiftLeft(cBool: cBool)
+                  } else {
+                      shiftRight(cBool: cBool)
+                  }
+
+              }
+
             }
             
             index += 1
             
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-            self.animateCircles(rev: rev, cBool: cBool)
-        }
+      Task { @MainActor in
+        try await Task.sleep(for: .seconds(0.7))
+        self.animateCircles(rev: rev, cBool: cBool)
+      }
+
     }
     
     
@@ -205,9 +210,10 @@ struct Leaf: View {
     }
     
     func changeOpacity(idx: Int) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.circles[idx].opacity = 0
-        }
+      Task { @MainActor in
+        try await Task.sleep(for: .seconds(2))
+        self.circles[idx].opacity = 0
+      }
     }
     func resetCircleProperties() {
         //        self.circles[idx].position = pos
@@ -217,11 +223,13 @@ struct Leaf: View {
     }
     
     func animateLastCircle(withDelay delay: TimeInterval, index: Int, pos: CGFloat) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.circles[index].opacity = 0
-            self.circles[index].position = pos
-        }
-        
+      Task { @MainActor in
+        try await Task.sleep(until: .now + .seconds(0.1),
+                             tolerance: .microseconds(1),
+                             clock: .continuous)
+        self.circles[index].opacity = 0
+        self.circles[index].position = pos
+      }
     }
     
     

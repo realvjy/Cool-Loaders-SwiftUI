@@ -158,10 +158,8 @@ struct Space: View {
                             }
                             .offset(x: xOffset)
                             .onAppear {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                    withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
-                                        xOffset = 500
-                                    }
+                                withAnimation(.linear(duration: 2).delay(0.1).repeatForever(autoreverses: false)) {
+                                    xOffset = 500
                                 }
                             }
                         }
@@ -177,10 +175,13 @@ struct Space: View {
                 }
         }
         .background(.clear)
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-             
-            }
+        .task {
+          do {
+            try await Task.sleep(for: .seconds(0.1))
+            // missing code?
+          } catch {
+            print(error)
+          }
         }
         .ignoresSafeArea()
     }

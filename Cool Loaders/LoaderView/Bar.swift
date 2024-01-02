@@ -63,11 +63,9 @@ struct Bar: View {
                 }
                 .offset(x: xOffset)
                 .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
-                            xOffset = 500
-                        }
-                    }
+                  withAnimation(.linear(duration: 2).delay(0.1).repeatForever(autoreverses: false)) {
+                      xOffset = 500
+                  }
                 }
             }
             //Color masking
@@ -129,22 +127,23 @@ struct Bar: View {
         }
     }
     func performAnimation() {
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            withAnimation(.linear(duration: 0.2)) {
-                self.animationState = 2
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                withAnimation(.linear(duration: 0.2)) {
-                    self.animationState = 3
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        // Instantly transition to frame 1 without animation
-                        self.animationState = 1
-                        performAnimation() // Repeat the animation
-                    }
-                }
-            }
+      Task { @MainActor in
+        try await Task.sleep(for: .seconds(1))
+        withAnimation(.linear(duration: 0.2)) {
+            self.animationState = 2
         }
+        try await Task.sleep(for: .seconds(1))
+        withAnimation(.linear(duration: 0.2)) {
+            self.animationState = 3
+        }
+        try await Task.sleep(for: .seconds(1))
+        withAnimation(.linear(duration: 0.2)) {
+          // Instantly transition to frame 1 without animation
+          self.animationState = 1
+
+        }
+        performAnimation() // Repeat the animation
+      }
     }
     
 }
