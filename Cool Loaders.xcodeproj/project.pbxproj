@@ -36,6 +36,7 @@
 		1E79CD8F2B37679D0031B9C4 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		1E7CF11E2B3A074600CDABED /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		1ED76BEA2B3E65E8002DFA51 /* CustomNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationView.swift; sourceTree = "<group>"; };
+		1EE62CEE2B43CE5000739E8F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1EE729232B3876E000EBEBA6 /* Space.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space.swift; sourceTree = "<group>"; };
 		1EE729252B38817800EBEBA6 /* Cool-Loaders-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Cool-Loaders-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1EE729262B39043200EBEBA6 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 		1EF2CD6A2B335E91007EB22D = {
 			isa = PBXGroup;
 			children = (
+				1EE62CEE2B43CE5000739E8F /* README.md */,
 				1EF2CD752B335E91007EB22D /* Cool Loaders */,
 				1EF2CD742B335E91007EB22D /* Products */,
 			);

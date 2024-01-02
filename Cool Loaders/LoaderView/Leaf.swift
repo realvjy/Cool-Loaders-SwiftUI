@@ -36,8 +36,7 @@ struct CircleLeaf: View {
 }
 
 struct Leaf: View {
-//    var namespace: Namespace.ID
-//    @Binding var show: Bool
+    
     
     @State private var circles: [CircleData] = CircleData.circlesWithPosition()
     @State private var circles2: [CircleData] = CircleData.circlesWithPosition()
@@ -52,7 +51,7 @@ struct Leaf: View {
     @State private var newOpacity: CGFloat = 0
     @State private var timer: Timer?
     @StateObject var refreshManager = RefreshManager.shared
-
+    
     
     var body: some View {
         
@@ -67,7 +66,7 @@ struct Leaf: View {
                     }
                 }
             }
-            .offset(x: -49)
+            .offset(x: -48)
             .onAppear {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
@@ -93,7 +92,7 @@ struct Leaf: View {
                     animateCircles(rev: true, cBool: false)
                 }
             }
-            .offset(x: -49).scaleEffect(x: -1, y: 1)
+            .offset(x: -48).scaleEffect(x: -1, y: 1)
             
             
         }.scaleEffect(1.8)
@@ -103,12 +102,12 @@ struct Leaf: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     
                 }
-   
+                
             }
             .onDisappear {
                 refreshManager.shouldRefresh = true
             }
-
+        
     }
     
     func animateCircles(rev: Bool, cBool: Bool) {
@@ -161,7 +160,7 @@ struct Leaf: View {
             circles.insert(lastElement, at: 0)
             // Update zIndex after shifting
             for (index, _) in circles.enumerated() {
-                circles[index].zIndex = index
+                circles[index].zIndex = index - 1 // trying to fix zindex no luck
             }
         } else {
             guard !circles2.isEmpty else { return }
@@ -169,7 +168,7 @@ struct Leaf: View {
             let lastElement = circles2.removeLast()
             circles2.insert(lastElement, at: 0)
             for (index, _) in circles2.enumerated() {
-                circles2[index].zIndex = index
+                circles2[index].zIndex = index - 1 // trying to fix zindex no luck
             }
         }
     }
@@ -182,7 +181,7 @@ struct Leaf: View {
             circles.append(firstElement)
             
             for (index, _) in circles.enumerated() {
-                circles[index].zIndex = index
+                circles[index].zIndex = index - 1 // trying to fix zindex no luck
             }
         } else {
             guard !circles2.isEmpty else { return }
@@ -191,7 +190,7 @@ struct Leaf: View {
             circles2.append(firstElement)
             // Update zIndex after shifting
             for (index, _) in circles2.enumerated() {
-                circles2[index].zIndex = index
+                circles2[index].zIndex = index - 1 // trying to fix zindex no luck
             }
         }
     }
@@ -213,8 +212,7 @@ struct Leaf: View {
     func resetCircleProperties() {
         //        self.circles[idx].position = pos
         for index in circles.indices {
-            circles[index].opacity = 1.0 // Reset opacity or any other properties you've changed during animation
-            //            circles[index].position = xOffsetForCircle(at: index)
+            circles[index].opacity = 1.0 // Reset opacity or any other properties you've changed during
         }
     }
     
@@ -279,7 +277,7 @@ struct CircleData: Identifiable, Hashable {
     
     static func circlesWithPosition() -> [CircleData] {
         let circles: [CircleData] = [
-            CircleData(opacity: 0, color: "lred", width: 18, height: 1.0, zIndex: 0),
+            CircleData(opacity: 0, color: "lred", width: 18, height: 1.0, zIndex: -1),
             CircleData(opacity: 0, color: "lred", width: 18, height: 18, zIndex: 0),
             CircleData(opacity: 1, color: "lred2", width: 14.0, height: 18, zIndex: 1),
             CircleData(opacity: 1, color: "lorange", width: 8.0, height: 18, zIndex: 2),
@@ -320,7 +318,7 @@ func xOffsetForCircle(at index: Int, circlesI: [CircleData]) -> CGFloat{
     let firstCircleOffset = getCenter(width: circlesI.first!.width)
     
     // Calculate the offset for the second circle
-    let secondCircleOffset = getCenter(width: circlesI[1].width)
+    _ = getCenter(width: circlesI[1].width)
     
     // Calculate the adjusted position for the second circle
     var result = accumulatedPrevWidth - accumulatedNextWidth + shift + firstCircleOffset + circlesI.first!.width
@@ -358,6 +356,6 @@ struct LeafPreview { // Example struct for holding the namespace
 }
 
 #Preview {
-//    Leaf(namespace: LeafPreview.namespace, show: .constant(true)).preferredColorScheme(.dark)
+    //    Leaf(namespace: LeafPreview.namespace, show: .constant(true)).preferredColorScheme(.dark)
     Leaf().preferredColorScheme(.dark)
 }

@@ -137,6 +137,20 @@ struct Rings: View {
                             .rotationEffect(Angle(degrees: circleRotation1 - 20), anchor: .center)
                         StrokeCircleGradient(widthScale: 0.86, heightScale: 0.96, lineWidth: 1, blurRadius: 1, colorHexTop: Color(UIColor(hex: "FF005C")), colorHexBottom: Color(UIColor(hex: "FF0099")))
                             .rotationEffect(Angle(degrees: circleRotation2 - 120))
+                        StrokeCircleGradient(widthScale: 0.75, heightScale: 0.75, lineWidth: 1, blurRadius: 0.5, colorHexTop: Color(UIColor(hex: "FF005C")), colorHexBottom: Color(UIColor(hex: "FF0099")))
+                            .rotationEffect(Angle(degrees: circleRotation2 - 80))
+                        Circle()
+                            .stroke(style: StrokeStyle(lineWidth: 10 * 0.008 * min(geometry.size.width, geometry.size.height), lineCap: .round))
+                            .frame(width: 0.9 * geometry.size.width, height: 0.9 * geometry.size.height)
+                            .blur(radius: 12)
+                            .rotationEffect(.degrees(90))
+                            .foregroundStyle(
+                                AngularGradient(gradient: gradient,
+                                                center: .center)
+                                
+                            )
+                            .rotationEffect(Angle(degrees: circleRotation1 ), anchor: .center)
+                            .blendMode(.overlay)
                         Circle()
                             .stroke(style: StrokeStyle(lineWidth: 10 * 0.008 * min(geometry.size.width, geometry.size.height), lineCap: .round))
                             .frame(width: 0.9 * geometry.size.width, height: 0.9 * geometry.size.height)

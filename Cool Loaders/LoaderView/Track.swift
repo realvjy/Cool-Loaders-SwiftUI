@@ -151,7 +151,7 @@ struct Track: View {
     
     let start = Date()
     
-    @State private var xOffset = -500.0 // Start offscreen to the left
+    
     var body: some View {
         ZStack{
             //            Color(.red) //for debug
@@ -196,7 +196,7 @@ struct Track: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() ) {
-                animateSequence()
+                animateStep3() // starting postion from stept 4
             }
         }
         .onDisappear {
