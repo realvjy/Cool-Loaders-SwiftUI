@@ -150,10 +150,13 @@ struct Wheel: View {
             }
    
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                rotateShapesContinuously(circleDuration: 1.4)
-            }
+        .task {
+          do {
+            try await Task.sleep(for: .seconds(0.1))
+            rotateShapesContinuously(circleDuration: 1.4)
+          } catch {
+            print(error)
+          }
         }
         .ignoresSafeArea()
         

@@ -80,20 +80,17 @@ struct ContentView: View {
             
             if let loaderContent = loaderContent {
                 CustomNavigationView(loaderType: loaderContent) {
-                    DispatchQueue.main.asyncAfter(deadline: .now()) {
-                        withAnimation{
-                            self.detailOffset = UIScreen.main.bounds.width
-                        }
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        self.loaderContent = nil
-                    }
-                   
+                  Task { @MainActor in
+                      withAnimation {
+                          self.detailOffset = UIScreen.main.bounds.width
+                      }
+                    try await Task.sleep(for: .seconds(0.1))
+                    self.loaderContent = nil
+                  }
                 }
                 .onAppear{
-                    withAnimation{
+                    withAnimation {
                         self.detailOffset = 0
-                        
                     }
                 }
                 .offset(x: detailOffset)
@@ -113,14 +110,12 @@ struct ContentView: View {
                             HStack(spacing: 20){
                                 ZStack{
                                     WrapperView(loader: .ring) { loaderContent  in
-                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                        Task { @MainActor in
                                             withAnimation{
                                                 self.homeOffset = -UIScreen.main.bounds.width
                                             }
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                self.loaderContent = loaderContent
-                                            
+                                            try await Task.sleep(for: .seconds(0.1))
+                                            self.loaderContent = loaderContent
                                         }
                                     }
                                     .scaleEffect(0.5)
@@ -133,14 +128,12 @@ struct ContentView: View {
                                     }
                                 ZStack{
                                     WrapperView(loader: .rings) { loaderContent  in
-                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                        Task { @MainActor in
                                             withAnimation{
                                                 self.homeOffset = -UIScreen.main.bounds.width
                                             }
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                self.loaderContent = loaderContent
-                                            
+                                            try await Task.sleep(for: .seconds(0.1))
+                                            self.loaderContent = loaderContent
                                         }
                                     }
                                     .scaleEffect(0.4)
@@ -156,14 +149,12 @@ struct ContentView: View {
                             HStack(spacing: 20){
                                 ZStack{
                                     WrapperView(loader: .space) { loaderContent  in
-                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                        Task { @MainActor in
                                             withAnimation{
                                                 self.homeOffset = -UIScreen.main.bounds.width
                                             }
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                self.loaderContent = loaderContent
-                                            
+                                            try await Task.sleep(for: .seconds(0.1))
+                                            self.loaderContent = loaderContent
                                         }
                                     }
                                     .scaleEffect(0.52)
@@ -175,14 +166,12 @@ struct ContentView: View {
                                     }
                                 ZStack{
                                     WrapperView(loader: .wheel) { loaderContent  in
-                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                        Task { @MainActor in
                                             withAnimation{
                                                 self.homeOffset = -UIScreen.main.bounds.width
                                             }
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                self.loaderContent = loaderContent
-                                            
+                                            try await Task.sleep(for: .seconds(0.1))
+                                            self.loaderContent = loaderContent
                                         }
                                     }
                                     .scaleEffect(0.4)
@@ -197,14 +186,12 @@ struct ContentView: View {
                             HStack(spacing: 20){
                                 ZStack{
                                     WrapperView(loader: .track) { loaderContent  in
-                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                        Task { @MainActor in
                                             withAnimation{
                                                 self.homeOffset = -UIScreen.main.bounds.width
                                             }
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                self.loaderContent = loaderContent
-                                            
+                                            try await Task.sleep(for: .seconds(0.1))
+                                            self.loaderContent = loaderContent
                                         }
                                     }
                                     .scaleEffect(0.52)
@@ -217,14 +204,12 @@ struct ContentView: View {
                                     }
                                 ZStack{
                                     WrapperView(loader: .leaf) { loaderContent  in
-                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                        Task { @MainActor in
                                             withAnimation{
                                                 self.homeOffset = -UIScreen.main.bounds.width
                                             }
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                self.loaderContent = loaderContent
-                                            
+                                            try await Task.sleep(for: .seconds(0.1))
+                                            self.loaderContent = loaderContent
                                         }
                                     }
                                     .scaleEffect(0.52)
@@ -240,14 +225,12 @@ struct ContentView: View {
                             HStack{
                                 ZStack{
                                     WrapperView(loader: .bar) { loaderContent  in
-                                        DispatchQueue.main.asyncAfter(deadline: .now()) {
+                                        Task { @MainActor in
                                             withAnimation{
                                                 self.homeOffset = -UIScreen.main.bounds.width
                                             }
-                                        }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                                self.loaderContent = loaderContent
-                                            
+                                            try await Task.sleep(for: .seconds(0.1))
+                                            self.loaderContent = loaderContent
                                         }
                                     }.scaleEffect(1)
                                         .frame(width: 400, height: 80)

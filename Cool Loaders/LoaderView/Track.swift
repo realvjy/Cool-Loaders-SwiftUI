@@ -194,10 +194,8 @@ struct Track: View {
   
             
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() ) {
-                animateStep3() // starting postion from stept 4
-            }
+        .task {
+            animateStep3()
         }
         .onDisappear {
             cleanUpTimer()
@@ -215,48 +213,43 @@ struct Track: View {
     }
     
     func animateStep1() {
-        
-        withAnimation(Animation.linear(duration: 1.0)) {
-            self.rotationDegrees = 180
-            
-        }
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        Task { @MainActor in
+            withAnimation(Animation.linear(duration: 1.0)) {
+                self.rotationDegrees = 180
+            }
+            try await Task.sleep(for: .seconds(1))
             self.animateStep2()
         }
     }
     
     func animateStep2() {
-        withAnimation(Animation.linear(duration: 1.0)) {
-            self.offsetX = 64
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        Task { @MainActor in
+            withAnimation(Animation.linear(duration: 1.0)) {
+                self.offsetX = 64
+            }
+            try await Task.sleep(for: .seconds(1))
             self.animateStep3()
         }
     }
     
     func animateStep3() {
-        withAnimation(Animation.linear(duration: 1.0)) {
-            self.rotationDegrees = 360
-            
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        Task { @MainActor in
+            withAnimation(Animation.linear(duration: 1.0)) {
+                self.rotationDegrees = 360
+            }
+            try await Task.sleep(for: .seconds(1))
             self.animateStep4()
         }
     }
     
     func animateStep4() {
-        withAnimation(Animation.linear(duration: 1.0)) {
-            self.offsetX = -64
-        }
-        self.rotationDegrees = 0
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        Task { @MainActor in
+            withAnimation(Animation.linear(duration: 1.0)) {
+                self.offsetX = -64
+            }
+            self.rotationDegrees = 0
+            try await Task.sleep(for: .seconds(1))
             self.animateSequence()
-            
         }
     }
     
